@@ -1,0 +1,123 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-gray-100 text-gray-950 leading-normal m-0;
+  animation: fadein 888ms ease;
+  -moz-animation: fadein 888ms ease; /* Firefox */
+  -webkit-animation: fadein 888ms ease; /* Safari and  Chrome */
+  -o-animation: fadein 888ms ease; /* Opera */
+
+  &.no-scroll {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /*Firefox*/
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /*SafariandChrome*/
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /*Opera*/
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pretty-scroll {
+  &::-webkit-scrollbar {
+    width: 4px !important;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply rounded-sm bg-charcoal;
+  }
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  &.pretty-scroll-x {
+    &::-webkit-scrollbar {
+      height: 4px !important;
+    }
+  }
+
+  &.pretty-scroll-light {
+    &::-webkit-scrollbar-thumb {
+      @apply bg-gray-400;
+    }
+  }
+
+  &.pretty-scroll-codet {
+    &::-webkit-scrollbar-thumb {
+      @apply bg-codet-blue-crayola;
+    }
+  }
+
+  &.pretty-scroll-hoverable {
+    &::-webkit-scrollbar-thumb {
+      @apply bg-transparent;
+    }
+  }
+
+  &.pretty-scroll-hoverable.pretty-scroll-light {
+    &:hover::-webkit-scrollbar-thumb {
+      @apply bg-gray-400;
+    }
+  }
+}
+
+.loading {
+  @apply w-screen h-screen bg-black/70;
+  @apply fixed top-0 left-0;
+  @apply inline-flex items-center justify-center;
+  @apply z-[1009];
+
+  .loader {
+    @apply w-12 h-12 inline-block;
+    @apply rounded-full box-border;
+    border-top: 3px solid #fff;
+    border-right: 3px solid transparent;
+    animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
