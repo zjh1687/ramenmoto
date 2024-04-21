@@ -1,9 +1,9 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../layout/Layout';
 
 const App = React.lazy(() => import('../App'));
-const Home = React.lazy(() => import('../Home'));
+// const Home = React.lazy(() => import('../Home'));
+const MainPage = React.lazy(() => import('../MainPage'));
 
 const router = createBrowserRouter([
   {
@@ -12,11 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: (
-          <Layout>
-            <Home />
-          </Layout>
-        ),
+        element: <MainPage />,
       },
     ],
   },
