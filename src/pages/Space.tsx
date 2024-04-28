@@ -18,6 +18,7 @@ const expandAnimation = keyframes`
 
 const Wrapper = styled.div`
   ${tw`w-full h-screen flex items-center overflow-hidden`}
+  touch-action: none;
 `;
 
 const ImageGallery = styled.div`
@@ -48,7 +49,7 @@ const images = [
 
 function Space() {
   const galleryRef = useRef<HTMLDivElement | null>(null);
-  const touchStartX = useRef(0);
+  const startY = useRef(0);
 
   useEffect(() => {
     AOS.init({
@@ -66,18 +67,32 @@ function Space() {
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX; // 시작 X 좌표 저장
+    startY.current = e.touches[0].clientY; // 시작 X 좌표 저장
   };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchMove = (e: TouchEvent) => {
     if (galleryRef.current) {
-      const touchCurrentX = e.touches[0].clientX;
-      const diffX = touchStartX.current - touchCurrentX; // 이동한 X 거리 계산
-      galleryRef.current.scrollLeft += diffX * 2; // 가로 스크롤 이동
-      touchStartX.current = touchCurrentX; // 현재 위치 갱신
+      const currentY = e.touches[0].clientY;
+      const deltaY = startY.current - currentY; // 시작점과 현재점의 Y 차이 계산
+      galleryRef.current.scrollLeft += deltaY * 0.1; //  계산된 차이만큼 가로 스크롤 이동
       e.preventDefault(); // 기본 스크롤 동작 방지
     }
   };
+  useEffect(() => {
+    const galleryElement = galleryRef.current;
+
+    galleryElement.addEventListener(
+      'touchmove',
+      (e: TouchEvent) => handleTouchMove(e),
+      {
+        passive: false,
+      },
+    );
+
+    return () => {
+      galleryElement.removeEventListener('touchmove', () => handleTouchMove);
+    };
+  }, []);
 
   return (
     <Wrapper>
@@ -85,7 +100,6 @@ function Space() {
         ref={galleryRef}
         onWheel={handleWheel}
         onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
       >
         {images.map((url, index) => (
           <img
