@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -135,6 +136,7 @@ const HomeMediaElement = styled.a<{ bg: string }>`
 
 const HoverableImage = () => {
   const [homeStyle, setHomeStyle] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -151,8 +153,10 @@ const HoverableImage = () => {
           <HomeMedia className="home__media">
             <HomeMediaElement
               className="home__media__element home__media__element--0"
+              onClick={() => {
+                navigate('/project/space');
+              }}
               bg="#9bce51"
-              href="/projects/clover/"
               id="clover"
             >
               <img
@@ -165,7 +169,6 @@ const HoverableImage = () => {
             <HomeMediaElement
               bg="#ffe31b"
               className="home__media__element home__media__element--1"
-              href="/projects/mailchimp/"
               id="mailchimp"
             >
               <img
@@ -178,7 +181,6 @@ const HoverableImage = () => {
             <HomeMediaElement
               bg="#b7bac5"
               className="home__media__element home__media__element--2"
-              href="/projects/mta/"
               id="mta"
             >
               <img
@@ -192,7 +194,6 @@ const HoverableImage = () => {
             <HomeMediaElement
               bg="#65bc4d"
               className="home__media__element home__media__element--3"
-              href="/projects/freshdirect/"
               id="freshdirect"
             >
               <img
@@ -205,7 +206,6 @@ const HoverableImage = () => {
             <HomeMediaElement
               bg="#cdcccc"
               className="home__media__element home__media__element--4"
-              href="/projects/wwc/"
               id="wwc"
             >
               <img
@@ -218,7 +218,6 @@ const HoverableImage = () => {
             <HomeMediaElement
               bg="#2157a4"
               className="home__media__element home__media__element--5"
-              href="/projects/gainbridge/"
               id="gainbridge"
             >
               <img
@@ -231,7 +230,6 @@ const HoverableImage = () => {
             <HomeMediaElement
               bg="#85cef1"
               className="home__media__element home__media__element--6"
-              href="/projects/vista/"
               id="vista"
             >
               <img

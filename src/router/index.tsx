@@ -2,8 +2,8 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 const App = React.lazy(() => import('../App'));
-// const Home = React.lazy(() => import('../Home'));
-const MainPage = React.lazy(() => import('../MainPage'));
+const Space = React.lazy(() => import('../pages/Space'));
+const MainPage = React.lazy(() => import('../pages/MainPage'));
 
 const router = createBrowserRouter([
   {
@@ -13,6 +13,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <MainPage />,
+      },
+      {
+        path: '/project/space',
+        element: <Space />,
       },
     ],
   },

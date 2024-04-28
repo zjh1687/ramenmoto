@@ -8,11 +8,11 @@
 html,
 body {
   @apply bg-gray-100 text-gray-950 leading-normal m-0;
-  font-size: min(calc(100vh / 1390 * 10), calc(100vw / 2224 * 10));
-  // animation: fadein 888ms ease;
-  // -moz-animation: fadein 888ms ease; /* Firefox */
-  // -webkit-animation: fadein 888ms ease; /* Safari and  Chrome */
-  // -o-animation: fadein 888ms ease; /* Opera */
+  font-size: min(calc(100vh / 1080 * 10), calc(100vw / 1920 * 10));
+  animation: fadein 888ms ease;
+  -moz-animation: fadein 888ms ease; /* Firefox */
+  -webkit-animation: fadein 888ms ease; /* Safari and  Chrome */
+  -o-animation: fadein 888ms ease; /* Opera */
 
   &.no-scroll {
     &::-webkit-scrollbar {
