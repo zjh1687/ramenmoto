@@ -74,7 +74,7 @@ function Space() {
     if (galleryRef.current) {
       const currentY = e.touches[0].clientY;
       const deltaY = startY.current - currentY; // 시작점과 현재점의 Y 차이 계산
-      galleryRef.current.scrollLeft += deltaY * 0.1; //  계산된 차이만큼 가로 스크롤 이동
+      galleryRef.current.scrollLeft += deltaY * 0.3; //  계산된 차이만큼 가로 스크롤 이동
       e.preventDefault(); // 기본 스크롤 동작 방지
     }
   };
