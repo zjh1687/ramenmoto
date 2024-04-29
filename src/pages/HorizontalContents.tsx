@@ -35,7 +35,7 @@ const ImageGallery = styled.div`
   }
 
   img {
-    ${tw`px-d2 w-full aspect-classic`}
+    ${tw`px-d2 w-[90%] aspect-classic`}
   }
 `;
 
@@ -116,16 +116,6 @@ function HorizontalContents() {
         onWheel={handleWheel}
         onTouchStart={handleTouchStart}
       >
-        {images.map((url, index) => (
-          <img
-            key={index}
-            src={url}
-            alt={`Photo ${index + 1}`}
-            data-aos="fade-up"
-            data-aos-delay="50"
-            data-aos-duration="1000"
-          />
-        ))}
         {images.map((url, index) => (
           <img
             key={index}
