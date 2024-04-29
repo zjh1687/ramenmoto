@@ -19,6 +19,9 @@ const TextSection = styled.section`
   letter-spacing: 2px;
   transform: translate(-50%, -50%);
   transition: opacity 0.5s ease-out;
+  @media (max-width: 700px) {
+    font-size: 10rem;
+  }
 `;
 
 const BackHome = styled.div`
