@@ -2,7 +2,10 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 const App = React.lazy(() => import('../App'));
-const Space = React.lazy(() => import('../pages/Space'));
+const HorizontalContents = React.lazy(
+  () => import('../pages/HorizontalContents'),
+);
+const SpacePage = React.lazy(() => import('../pages/SpacePage'));
 const MainPage = React.lazy(() => import('../pages/MainPage'));
 
 const router = createBrowserRouter([
@@ -15,8 +18,12 @@ const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
+        path: '/project/horizon',
+        element: <HorizontalContents />,
+      },
+      {
         path: '/project/space',
-        element: <Space />,
+        element: <SpacePage />,
       },
     ],
   },

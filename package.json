@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^20.12.7",
     "aos": "^3.0.0-beta.6",
+    "panolens": "^0.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.71.1"
+    "react-pannellum": "^0.2.14",
+    "sass": "^1.71.1",
+    "three": "^0.164.1"
   },
   "devDependencies": {
     "@types/prop-types": "^15.7.11",
@@ -27,6 +31,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.35",
+    "process": "^0.11.10",
     "prop-types": "^15.8.1",
     "react-full-page": "^0.1.12",
     "react-responsive": "^9.0.2",

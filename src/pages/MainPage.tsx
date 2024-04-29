@@ -49,6 +49,7 @@ const HomeMediaElement = styled.a<{ bg: string }>`
   overflow: hidden;
   position: absolute;
   transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
 
   &::before {
     background: ${({ bg }) => bg};
@@ -134,7 +135,7 @@ const HomeMediaElement = styled.a<{ bg: string }>`
   }
 `;
 
-const HoverableImage = () => {
+const MainPage = () => {
   const [homeStyle, setHomeStyle] = useState('');
   const navigate = useNavigate();
 
@@ -154,7 +155,7 @@ const HoverableImage = () => {
             <HomeMediaElement
               className="home__media__element home__media__element--0"
               onClick={() => {
-                navigate('/project/space');
+                navigate('/project/horizon');
               }}
               bg="#9bce51"
               id="clover"
@@ -170,6 +171,9 @@ const HoverableImage = () => {
               bg="#ffe31b"
               className="home__media__element home__media__element--1"
               id="mailchimp"
+              onClick={() => {
+                navigate('/project/space');
+              }}
             >
               <img
                 alt="Mailchimp"
@@ -246,4 +250,4 @@ const HoverableImage = () => {
   );
 };
 
-export default HoverableImage;
+export default MainPage;
