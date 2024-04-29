@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import tw from 'twin.macro';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // AOS 스타일 시트를 임포트합니다.
+import { useNavigate } from 'react-router-dom';
 
 // 애니메이션 정의
 const expandAnimation = keyframes`
@@ -22,13 +23,12 @@ const Wrapper = styled.div`
 `;
 
 const ImageGallery = styled.div`
-  ${tw`px-d20 flex items-center`}
-  width: 100%;
+  ${tw`w-auto flex items-center pl-d20`}
   height: 100%;
   overflow-x: scroll;
   gap: 20px;
   scrollbar-width: none; // Firefox
-  /* animation: ${expandAnimation} 1s ease-out forwards; */
+  animation: ${expandAnimation} 1s ease-out forwards;
 
   ::-webkit-scrollbar {
     display: none; // Chrome, Safari, Opera
@@ -36,6 +36,20 @@ const ImageGallery = styled.div`
 
   img {
     ${tw`px-d2 w-full aspect-classic`}
+  }
+`;
+
+const EndZone = styled.div`
+  ${tw`flex items-center justify-center`}
+  width: auto;
+  height: 100%;
+  cursor: url('/cursor.png') 70 70, pointer; // 사용자 지정 커서
+  &::before {
+    content: '';
+    width: 200px;
+    height: 100%;
+    left: 0;
+    top: 0;
   }
 `;
 
@@ -48,6 +62,7 @@ const images = [
 ];
 
 function Space() {
+  const navigate = useNavigate();
   const galleryRef = useRef<HTMLDivElement | null>(null);
   const startY = useRef(0);
 
@@ -74,7 +89,7 @@ function Space() {
     if (galleryRef.current) {
       const currentY = e.touches[0].clientY;
       const deltaY = startY.current - currentY; // 시작점과 현재점의 Y 차이 계산
-      galleryRef.current.scrollLeft += deltaY * 0.3; //  계산된 차이만큼 가로 스크롤 이동
+      galleryRef.current.scrollLeft += deltaY * 0.2; //  계산된 차이만큼 가로 스크롤 이동
       e.preventDefault(); // 기본 스크롤 동작 방지
     }
   };
@@ -111,6 +126,17 @@ function Space() {
             data-aos-duration="1000"
           />
         ))}
+        {images.map((url, index) => (
+          <img
+            key={index}
+            src={url}
+            alt={`Photo ${index + 1}`}
+            data-aos="fade-up"
+            data-aos-delay="50"
+            data-aos-duration="1000"
+          />
+        ))}
+        <EndZone onClick={() => navigate('/')} />
       </ImageGallery>
     </Wrapper>
   );
