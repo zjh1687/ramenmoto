@@ -2,7 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 import tw from 'twin.macro';
 
 export const Wrapper = styled.div`
-  ${tw`w-full h-screen absolute top-0 left-0 `}
+  ${tw`w-full h-[100dvh] absolute top-0 left-0 `}
   &.home--2 {
     .home__media__element {
       border-radius: 50%;
