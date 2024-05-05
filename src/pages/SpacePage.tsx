@@ -19,8 +19,8 @@ const TextSection = styled.section`
   letter-spacing: 2px;
   transform: translate(-50%, -50%);
   transition: opacity 0.5s ease-out;
-  @media (max-width: 700px) {
-    font-size: 10rem;
+  @media (max-width: 500px) {
+    font-size: 30px;
   }
 `;
 
@@ -39,7 +39,6 @@ const SpacePage = () => {
       // THREE.js와 PANOLENS를 이용한 뷰어 초기화
       const viewer = new PANOLENS.Viewer({
         container: viewerRef.current, // 참조된 div 요소
-        output: 'console', // 디버그 정보를 콘솔에 출력
         autoHideInfospot: false, // 핫스팟 자동 숨김 비활성화
         autoHideControlBar: true,
         controlBar: true, // 하단의 컨트롤 바 표시

@@ -18,7 +18,7 @@ const expandAnimation = keyframes`
 `;
 
 const Wrapper = styled.div`
-  ${tw`w-full h-screen flex items-center overflow-hidden`}
+  ${tw`w-full h-[100dvh] flex items-center overflow-hidden bg-[#9bce51]`}
   touch-action: none;
 `;
 
@@ -35,7 +35,7 @@ const ImageGallery = styled.div`
   }
 
   img {
-    ${tw`px-d2 w-[90%] aspect-classic`}
+    ${tw`p-d2 w-[80%] aspect-classic`}
   }
 `;
 
@@ -44,6 +44,7 @@ const EndZone = styled.div`
   width: auto;
   height: 100%;
   cursor: url('/cursor.png') 70 70, pointer; // 사용자 지정 커서
+  transition: all 1s ease-out;
   &::before {
     content: '';
     width: 200px;

@@ -1,143 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import * as S from './MainStyle';
 
-const Wrapper = styled.div`
-  ${tw`w-full h-screen absolute top-0 left-0 `}
-  &.home--2 {
-    .home__media__element {
-      border-radius: 50%;
-    }
-    .home__media__element--0 {
-      height: 24.8rem;
-      transform: translateY(14rem);
-    }
-    .home__media__element--1 {
-      transform: translateY(4rem);
-    }
-    .home__media__element--2 {
-      transform: translate(-16.8rem);
-      width: 83.8rem;
-    }
-    .home__media__element--3 {
-      transform: translateY(-4rem);
-    }
-    .home__media__element--4 {
-      height: 24.8rem;
-      transform: translateY(3rem);
-    }
-  }
-`;
-
-const HomeContent = styled.div`
-  ${tw`absolute`}
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-const HomeMedia = styled.div`
-  display: block;
-  height: 83.8rem;
-  overflow: visible;
-  position: relative;
-  width: 133.7rem;
-`;
-
-const HomeMediaElement = styled.a<{ bg: string }>`
-  overflow: hidden;
-  position: absolute;
-  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-  cursor: pointer;
-
-  &::before {
-    background: ${({ bg }) => bg};
-    content: '';
-    height: 100%;
-    left: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-
-  &:hover {
-    .home__media__media {
-      opacity: 1;
-    }
-  }
-
-  .home__media__media {
-    display: block;
-    height: 100vh;
-    object-fit: cover;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    transition: opacity 0.4s ease;
-  }
-
-  &.home__media__element--0 {
-    height: 41.9rem;
-    left: 0;
-    top: 0;
-    width: 24.8rem;
-    z-index: 2;
-  }
-
-  &.home__media__element--1 {
-    height: 41.9rem;
-    width: 41.9rem;
-    left: 24.8rem;
-    top: 0;
-    z-index: 2;
-  }
-
-  &.home__media__element--2 {
-    height: 83.8rem;
-    left: 66.7rem;
-    top: 0;
-    width: 67rem;
-    z-index: 1;
-  }
-
-  &.home__media__element--3 {
-    height: 41.9rem;
-    left: 0;
-    top: 41.9rem;
-    width: 41.9rem;
-    z-index: 2;
-  }
-
-  &.home__media__element--4 {
-    height: 41.9rem;
-    left: 41.9rem;
-    top: 41.9rem;
-    width: 24.8rem;
-    z-index: 2;
-  }
-
-  &.home__media__element--5 {
-    height: 41.9rem;
-    left: 91.8rem;
-    top: 41.9rem;
-    width: 41.9rem;
-    z-index: 2;
-  }
-
-  &.home__media__element--6 {
-    height: 21rem;
-    left: 112.75rem;
-    top: 62.8rem;
-    width: 21rem;
-    z-index: 3;
-  }
-`;
-
-const MainPage = () => {
+function MainPage() {
   const [homeStyle, setHomeStyle] = useState('');
+  const [animateState, setAnimateState] = useState(false);
+  const [animateColor, setAnimateColor] = useState('');
+
   const navigate = useNavigate();
+
+  const startAnimation = (props: { url: string; bgColor: string }) => {
+    setAnimateColor(props.bgColor);
+    setAnimateState(true);
+    setTimeout(() => {
+      setAnimateState(false);
+      navigate(props.url);
+    }, 800); // 시간은 애니메이션 지속 시간과 일치해야 합니다.
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -148,17 +27,21 @@ const MainPage = () => {
   }, []);
 
   return (
-    <Wrapper className={homeStyle}>
+    <S.Wrapper className={homeStyle}>
+      <S.AnimatedOverlay
+        $animateState={animateState ? animateState : undefined}
+        $backgroundColor={animateColor}
+      />
       <div className="h-screen">
-        <HomeContent>
-          <HomeMedia className="home__media">
-            <HomeMediaElement
+        <S.HomeContent>
+          <S.HomeMedia className="home__media">
+            <S.HomeMediaElement
               className="home__media__element home__media__element--0"
-              onClick={() => {
-                navigate('/project/horizon');
-              }}
-              bg="#9bce51"
+              $background="#9bce51"
               id="clover"
+              onClick={() =>
+                startAnimation({ url: '/project/horizon', bgColor: '#9bce51' })
+              }
             >
               <img
                 alt="Clover"
@@ -166,14 +49,14 @@ const MainPage = () => {
                 data-src="/ramen-soup-svgrepo-com.svg"
                 src="/ramen-soup-svgrepo-com.svg"
               />
-            </HomeMediaElement>
-            <HomeMediaElement
-              bg="#ffe31b"
+            </S.HomeMediaElement>
+            <S.HomeMediaElement
+              $background="#ffe31b"
               className="home__media__element home__media__element--1"
               id="mailchimp"
-              onClick={() => {
-                navigate('/project/space');
-              }}
+              onClick={() =>
+                startAnimation({ url: '/project/space', bgColor: '#ffe31b' })
+              }
             >
               <img
                 alt="Mailchimp"
@@ -181,9 +64,9 @@ const MainPage = () => {
                 data-src="/ramen-soup-svgrepo-com.svg"
                 src="/ramen-soup-svgrepo-com.svg"
               />
-            </HomeMediaElement>
-            <HomeMediaElement
-              bg="#b7bac5"
+            </S.HomeMediaElement>
+            <S.HomeMediaElement
+              $background="#b7bac5"
               className="home__media__element home__media__element--2"
               id="mta"
             >
@@ -193,10 +76,10 @@ const MainPage = () => {
                 data-src="/ramen-soup-svgrepo-com.svg"
                 src="/ramen-soup-svgrepo-com.svg"
               />
-            </HomeMediaElement>
+            </S.HomeMediaElement>
 
-            <HomeMediaElement
-              bg="#65bc4d"
+            <S.HomeMediaElement
+              $background="#65bc4d"
               className="home__media__element home__media__element--3"
               id="freshdirect"
             >
@@ -206,9 +89,9 @@ const MainPage = () => {
                 data-src="/ramen-soup-svgrepo-com.svg"
                 src="/ramen-soup-svgrepo-com.svg"
               />
-            </HomeMediaElement>
-            <HomeMediaElement
-              bg="#cdcccc"
+            </S.HomeMediaElement>
+            <S.HomeMediaElement
+              $background="#cdcccc"
               className="home__media__element home__media__element--4"
               id="wwc"
             >
@@ -218,9 +101,9 @@ const MainPage = () => {
                 data-src="/ramen-soup-svgrepo-com.svg"
                 src="/ramen-soup-svgrepo-com.svg"
               />
-            </HomeMediaElement>
-            <HomeMediaElement
-              bg="#2157a4"
+            </S.HomeMediaElement>
+            <S.HomeMediaElement
+              $background="#2157a4"
               className="home__media__element home__media__element--5"
               id="gainbridge"
             >
@@ -230,9 +113,9 @@ const MainPage = () => {
                 data-src="/ramen-soup-svgrepo-com.svg"
                 src="/ramen-soup-svgrepo-com.svg"
               />
-            </HomeMediaElement>
-            <HomeMediaElement
-              bg="#85cef1"
+            </S.HomeMediaElement>
+            <S.HomeMediaElement
+              $background="#85cef1"
               className="home__media__element home__media__element--6"
               id="vista"
             >
@@ -242,12 +125,20 @@ const MainPage = () => {
                 data-src="/ramen-soup-svgrepo-com.svg"
                 src="/ramen-soup-svgrepo-com.svg"
               />
-            </HomeMediaElement>
-          </HomeMedia>
-        </HomeContent>
+            </S.HomeMediaElement>
+          </S.HomeMedia>
+          <div
+            className="cursor-pointer"
+            onClick={() =>
+              startAnimation({ url: '/project/about', bgColor: 'pink' })
+            }
+          >
+            <span className="underline">About ORIJIN HOUSE</span>
+          </div>
+        </S.HomeContent>
       </div>
-    </Wrapper>
+    </S.Wrapper>
   );
-};
+}
 
 export default MainPage;
