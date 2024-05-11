@@ -46,7 +46,7 @@ const SpacePage = () => {
       });
       viewerRef.current = viewer;
       // 임시 이미지 URL을 사용하여 파노라마 이미지 생성
-      const panorama = new PANOLENS.ImagePanorama('/5.jpg');
+      const panorama = new PANOLENS.ImagePanorama('/ramenmoto-360.jpeg');
       panoramaRef.current = panorama;
 
       // 이미지를 뷰어에 추가
