@@ -2,8 +2,35 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './MainStyle';
 
-function MainPage() {
-  const [homeStyle, setHomeStyle] = useState('');
+interface MediaElementProps {
+  className: string;
+  background: string;
+  id: string;
+  onClick?: () => void;
+  alt: string;
+  src: string;
+}
+
+const MediaElement: React.FC<MediaElementProps> = ({
+  className,
+  background,
+  id,
+  onClick,
+  alt,
+  src,
+}) => (
+  <S.MediaElement
+    className={className}
+    $background={background}
+    id={id}
+    onClick={onClick}
+  >
+    <img alt={alt} className="media-content" data-src={src} src={src} />
+  </S.MediaElement>
+);
+
+const MainPage: React.FC = () => {
+  const [homeStyleNum, setHomeStyleNum] = useState(0);
   const [animateState, setAnimateState] = useState(false);
   const [animateColor, setAnimateColor] = useState('');
 
@@ -15,117 +42,81 @@ function MainPage() {
     setTimeout(() => {
       setAnimateState(false);
       navigate(props.url);
-    }, 800); // 시간은 애니메이션 지속 시간과 일치해야 합니다.
+    }, 800); // 애니메이션 지속 시간과 일치해야 합니다.
   };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setHomeStyle((style) => (!style ? 'home--2' : ''));
+      setHomeStyleNum((prevStyle) => (prevStyle >= 5 ? 0 : prevStyle + 1));
     }, 2000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
-    <S.Wrapper className={homeStyle}>
+    <S.Wrapper className={`variant${homeStyleNum}`}>
       <S.AnimatedOverlay
         $animateState={animateState ? animateState : undefined}
         $backgroundColor={animateColor}
       />
       <div className="h-screen">
         <S.HomeContent>
-          <S.HomeMedia className="home__media">
-            <S.HomeMediaElement
-              className="home__media__element home__media__element--0"
-              $background="#9bce51"
+          <S.HomeMedia>
+            <MediaElement
+              className="media-element media-element--0"
+              background="#4F5F19"
               id="clover"
               onClick={() =>
-                startAnimation({ url: '/project/horizon', bgColor: '#9bce51' })
+                startAnimation({ url: '/project/horizon', bgColor: '#4F5F19' })
               }
-            >
-              <img
-                alt="Clover"
-                className="home__media__media"
-                data-src="/ramen-soup-svgrepo-com.svg"
-                src="/ramen-soup-svgrepo-com.svg"
-              />
-            </S.HomeMediaElement>
-            <S.HomeMediaElement
-              $background="#ffe31b"
-              className="home__media__element home__media__element--1"
+              alt="Clover"
+              src="/ramen-soup-svgrepo-com.svg"
+            />
+            <MediaElement
+              className="media-element media-element--1"
+              background="#EFD8B6"
               id="mailchimp"
               onClick={() =>
-                startAnimation({ url: '/project/space', bgColor: '#ffe31b' })
+                startAnimation({ url: '/project/space', bgColor: '#EFD8B6' })
               }
-            >
-              <img
-                alt="Mailchimp"
-                className="home__media__media"
-                data-src="/ramen-soup-svgrepo-com.svg"
-                src="/ramen-soup-svgrepo-com.svg"
-              />
-            </S.HomeMediaElement>
-            <S.HomeMediaElement
-              $background="#b7bac5"
-              className="home__media__element home__media__element--2"
+              alt="Mailchimp"
+              src="/ramen-soup-svgrepo-com.svg"
+            />
+            <MediaElement
+              className="media-element media-element--2"
+              background="#0A0A0A"
               id="mta"
-            >
-              <img
-                alt="MTA"
-                className="home__media__media"
-                data-src="/ramen-soup-svgrepo-com.svg"
-                src="/ramen-soup-svgrepo-com.svg"
-              />
-            </S.HomeMediaElement>
-
-            <S.HomeMediaElement
-              $background="#65bc4d"
-              className="home__media__element home__media__element--3"
+              alt="MTA"
+              src="/ramen-soup-svgrepo-com.svg"
+            />
+            <MediaElement
+              className="media-element media-element--3"
+              background="#EF9C42"
               id="freshdirect"
-            >
-              <img
-                alt="Freshdirect"
-                className="home__media__media"
-                data-src="/ramen-soup-svgrepo-com.svg"
-                src="/ramen-soup-svgrepo-com.svg"
-              />
-            </S.HomeMediaElement>
-            <S.HomeMediaElement
-              $background="#cdcccc"
-              className="home__media__element home__media__element--4"
+              alt="Freshdirect"
+              src="/ramen-soup-svgrepo-com.svg"
+            />
+            <MediaElement
+              className="media-element media-element--4"
+              background="#74574B"
               id="wwc"
-            >
-              <img
-                alt="WWC"
-                className="home__media__media"
-                data-src="/ramen-soup-svgrepo-com.svg"
-                src="/ramen-soup-svgrepo-com.svg"
-              />
-            </S.HomeMediaElement>
-            <S.HomeMediaElement
-              $background="#2157a4"
-              className="home__media__element home__media__element--5"
+              alt="WWC"
+              src="/ramen-soup-svgrepo-com.svg"
+            />
+            <MediaElement
+              className="media-element media-element--5"
+              background="#BC9874"
               id="gainbridge"
-            >
-              <img
-                alt="Gainbridge"
-                className="home__media__media"
-                data-src="/ramen-soup-svgrepo-com.svg"
-                src="/ramen-soup-svgrepo-com.svg"
-              />
-            </S.HomeMediaElement>
-            <S.HomeMediaElement
-              $background="#85cef1"
-              className="home__media__element home__media__element--6"
+              alt="Gainbridge"
+              src="/ramen-soup-svgrepo-com.svg"
+            />
+            <MediaElement
+              className="media-element media-element--6"
+              background="#F6D145"
               id="vista"
-            >
-              <img
-                alt="Vista"
-                className="home__media__media"
-                data-src="/ramen-soup-svgrepo-com.svg"
-                src="/ramen-soup-svgrepo-com.svg"
-              />
-            </S.HomeMediaElement>
+              alt="Vista"
+              src="/ramen-soup-svgrepo-com.svg"
+            />
           </S.HomeMedia>
           <div
             className="cursor-pointer"
@@ -139,6 +130,6 @@ function MainPage() {
       </div>
     </S.Wrapper>
   );
-}
+};
 
 export default MainPage;
