@@ -18,7 +18,7 @@ const expandAnimation = keyframes`
 `;
 
 const Wrapper = styled.div`
-  ${tw`w-full h-[100dvh] flex items-center overflow-hidden bg-[#9bce51]`}
+  ${tw`w-full h-[100dvh] flex items-center overflow-hidden bg-[#4F5F19]`}
   touch-action: none;
 `;
 

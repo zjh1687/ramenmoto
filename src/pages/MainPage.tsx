@@ -65,7 +65,7 @@ const MainPage: React.FC = () => {
             <MediaElement
               className="media-element media-element--0"
               background="#4F5F19"
-              id="clover"
+              id="Menu"
               onClick={() =>
                 startAnimation({ url: '/project/horizon', bgColor: '#4F5F19' })
               }
@@ -121,7 +121,7 @@ const MainPage: React.FC = () => {
           <div
             className="cursor-pointer"
             onClick={() =>
-              startAnimation({ url: '/project/about', bgColor: 'pink' })
+              startAnimation({ url: '/project/about', bgColor: 'white' })
             }
           >
             <span className="underline">About ORIJIN HOUSE</span>

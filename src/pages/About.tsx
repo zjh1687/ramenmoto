@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const PinkBackground = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: pink;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,8 +11,7 @@ const PinkBackground = styled.div`
 function About() {
   return (
     <PinkBackground>
-      <h1>Page Two</h1>
-      <p>Welcome to the second page!</p>
+      <img className="w-full h-full" src="/OHlogo.svg" alt="logo" />
     </PinkBackground>
   );
 }

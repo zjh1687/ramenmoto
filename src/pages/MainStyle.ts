@@ -10,12 +10,12 @@ const commonMediaElementStyles = css`
 
   &::before {
     content: '';
+    width: 100%;
     height: 100%;
     left: 0;
+    top: 0;
     pointer-events: none;
     position: absolute;
-    top: 0;
-    width: 100%;
   }
 
   &:hover .media-content {
@@ -27,6 +27,8 @@ const commonMediaElementStyles = css`
     height: 100vh;
     object-fit: cover;
     opacity: 0;
+    left: -30rem;
+    top: -20rem;
     pointer-events: none;
     position: absolute;
     transition: opacity 0.4s ease;
@@ -97,46 +99,46 @@ const mediaElementVariants = {
       border-radius: 100rem;
     }
   `,
-  variant3: css`
-    .media-element--0 {
-      height: 40rem;
-      border-top-right-radius: 30rem;
-    }
-    .media-element--1 {
-      height: 40rem;
-      border-bottom-right-radius: 35rem;
-    }
-    .media-element--2 {
-      border-top-right-radius: 35rem;
-    }
-    .media-element--3 {
-      height: 40rem;
-      width: 40rem;
-      border-top-right-radius: 40rem;
-      border-bottom-right-radius: 40rem;
-      transform: translateY(5rem);
-    }
-    .media-element--4 {
-      height: 40rem;
-      width: 20rem;
-      border-top-left-radius: 35rem;
-      transform: translate(15rem, 5rem);
-    }
-    .media-element--5 {
-      height: 40rem;
-      width: 30rem;
-      border-top-right-radius: 20rem;
-      transform: translateY(-8rem);
-    }
-    .media-element--6 {
-      height: 20rem;
-      width: 20rem;
+  // variant3: css`
+  //   .media-element--0 {
+  //     height: 40rem;
+  //     border-top-right-radius: 30rem;
+  //   }
+  //   .media-element--1 {
+  //     height: 40rem;
+  //     border-bottom-right-radius: 35rem;
+  //   }
+  //   .media-element--2 {
+  //     border-top-right-radius: 35rem;
+  //   }
+  //   .media-element--3 {
+  //     height: 40rem;
+  //     width: 40rem;
+  //     border-top-right-radius: 40rem;
+  //     border-bottom-right-radius: 40rem;
+  //     transform: translateY(5rem);
+  //   }
+  //   .media-element--4 {
+  //     height: 40rem;
+  //     width: 20rem;
+  //     border-top-left-radius: 35rem;
+  //     transform: translate(15rem, 5rem);
+  //   }
+  //   .media-element--5 {
+  //     height: 40rem;
+  //     width: 30rem;
+  //     border-top-right-radius: 20rem;
+  //     transform: translateY(-8rem);
+  //   }
+  //   .media-element--6 {
+  //     height: 20rem;
+  //     width: 20rem;
 
-      border-top-right-radius: 20rem;
-      transform: translate(-2rem, -6rem);
-    }
-  `,
-  variant4: css`
+  //     border-top-right-radius: 20rem;
+  //     transform: translate(-2rem, -6rem);
+  //   }
+  // `,
+  variant3: css`
     .media-element--0 {
       height: 60rem;
       width: 20rem;
@@ -179,7 +181,7 @@ const mediaElementVariants = {
       transform: translate(-7.5rem, -15rem);
     }
   `,
-  variant5: css`
+  variant4: css`
     .media-element--0 {
       height: 40rem;
       width: 20rem;
@@ -231,9 +233,6 @@ export const Wrapper = styled.div`
   }
   &.variant4 {
     ${mediaElementVariants.variant4}
-  }
-  &.variant5 {
-    ${mediaElementVariants.variant5}
   }
 `;
 
